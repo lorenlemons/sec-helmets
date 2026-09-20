@@ -1,1 +1,433 @@
-/tmp/claude-0/-home-claude/156bb32b-4ad3-5deb-863a-6f023299ea8f/scratchpad/index.html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEC Football 2026 Helmet Schedule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF2EE; --surface:#FFFFFF; --ink:#122018; --muted:#56645A; --line:#D3DCD4;
+  --turf:#1D5A33; --turf-2:#205F37; --chalk:#FFFFFF;
+  --nonsec:#A3AAB2; --nonsec-mask:#5B6168; --focus:#F2C230; --win:#1D6B3A; --loss:#A8322A;
+  --display:"Barlow Condensed","Arial Narrow","Roboto Condensed",sans-serif;
+  --body:"Barlow","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1811; --surface:#14241A; --ink:#E6EEE7; --muted:#9DB0A2; --line:#24382B;
+    --turf:#18492A; --turf-2:#1B4F2E; --nonsec:#6F7780; --nonsec-mask:#C4CAD0; --win:#7CD897; --loss:#F08A80;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1811; --surface:#14241A; --ink:#E6EEE7; --muted:#9DB0A2; --line:#24382B;
+  --turf:#18492A; --turf-2:#1B4F2E; --nonsec:#6F7780; --nonsec-mask:#C4CAD0; --win:#7CD897; --loss:#F08A80;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+/* Turf band */
+.turf{
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 2px, transparent 2px 56px),
+    repeating-linear-gradient(90deg, var(--turf) 0 112px, var(--turf-2) 112px 224px);
+  color:var(--chalk);
+  padding:28px 0 0;
+}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(46px,12vw,104px);line-height:.88;margin:0;letter-spacing:.5px}
+h1 small{display:block;font-weight:600;font-size:.42em;letter-spacing:1px;opacity:.9;margin-top:.25em}
+.lede{margin:14px 0 18px;max-width:52ch;opacity:.92}
+.weeks{display:flex;gap:2px;overflow-x:auto;padding:0 18px 16px;margin:0 auto;max-width:980px;scrollbar-width:none}
+.weeks::-webkit-scrollbar{display:none}
+.wk{
+  flex:0 0 auto;min-width:48px;height:56px;border:2px solid transparent;border-radius:6px;background:transparent;
+  font-family:var(--display);font-weight:800;font-size:30px;color:var(--chalk);cursor:pointer;padding:0 8px;opacity:.75
+}
+.wk:hover{opacity:1}
+.wk[aria-pressed="true"]{opacity:1;border-color:var(--chalk);background:rgba(255,255,255,.1)}
+.wk.cg{font-size:20px;min-width:74px}
+.wk .now{display:block;font-family:var(--body);font-size:10px;font-weight:600;line-height:1;margin-top:-2px}
+
+/* Tabs */
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:22px auto 10px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.seg button{white-space:nowrap;border:0;background:transparent;padding:7px 16px;border-radius:999px;cursor:pointer;font-weight:600}
+.seg button[aria-selected="true"]{background:var(--turf);color:#fff}
+.legend{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:14px}
+.legend svg{width:30px;height:23px}
+
+/* Week view */
+.wkhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 12px}
+.wkhead h2{font-family:var(--display);font-weight:800;font-size:44px;line-height:1;margin:0}
+.wkhead p{margin:0;color:var(--muted);font-weight:500}
+.games{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+@media (min-width:760px){.games{grid-template-columns:1fr 1fr}}
+.game{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px}
+.side{display:flex;align-items:center;gap:8px;min-width:0}
+.side.home{justify-content:flex-end;text-align:right}
+.nm{font-family:var(--display);font-weight:600;font-size:20px;line-height:1.05;overflow-wrap:break-word}
+.mid{font-family:var(--display);font-weight:600;color:var(--muted);font-size:16px}
+.helm{width:52px;height:39px;flex:0 0 auto}
+.note{margin:6px 0 0;text-align:center;color:var(--muted);font-size:13px}
+.off{margin:14px 0 0;color:var(--muted);font-size:14px}
+.off b{color:var(--ink);font-weight:600}
+
+/* Championship */
+.cg-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 16px;text-align:center}
+.cg-card .row{max-width:420px;margin:0 auto 14px}
+.cg-card p{margin:4px 0;color:var(--muted)}
+.cg-card strong{color:var(--ink)}
+
+/* Grid view */
+.gridwrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:separate;border-spacing:0;min-width:900px;width:100%}
+th,td{border-bottom:1px solid var(--line);padding:6px 4px;text-align:center;vertical-align:middle}
+tr:last-child td,tr:last-child th{border-bottom:0}
+thead th{font-family:var(--display);font-weight:600;font-size:15px;color:var(--muted);position:sticky;top:0;background:var(--surface)}
+thead th button{border:0;background:none;cursor:pointer;font-family:var(--display);font-weight:600;font-size:15px;color:var(--muted);padding:4px 6px;border-radius:4px}
+thead th button:hover{color:var(--ink);text-decoration:underline}
+th.team{position:sticky;left:0;background:var(--surface);text-align:left;z-index:1;border-right:1px solid var(--line);min-width:118px}
+th.team .t{display:flex;align-items:center;gap:6px;font-family:var(--display);font-weight:600;font-size:17px;white-space:nowrap}
+th.team .helm{width:34px;height:26px}
+td .helm{width:38px;height:29px;display:block;margin:0 auto}
+td .ab{display:block;font-family:var(--display);font-weight:600;font-size:13px;line-height:1.1;white-space:nowrap}
+td .ab i{font-style:normal;color:var(--muted)}
+td.bye{color:var(--muted);font-size:13px}
+td.cur, th.cur{background:color-mix(in srgb, var(--turf) 10%, var(--surface))}
+
+.nmb{display:flex;flex-direction:column;min-width:0}
+.home .nmb{align-items:flex-end}
+.rk{font-family:var(--body);font-size:12px;font-weight:600;color:var(--muted);margin-right:3px;vertical-align:2px}
+.rec{font-size:12px;color:var(--muted);font-weight:500}
+.lost .nm{color:var(--muted)}
+.score{font-family:var(--display);font-weight:800;font-size:24px;line-height:1;white-space:nowrap;text-align:center}
+.score .lo{color:var(--muted)}
+.score small{display:block;font-family:var(--body);font-weight:600;font-size:11px;color:var(--muted);margin-top:3px}
+td .res{display:block;font-size:11px;font-weight:600;white-space:nowrap}
+.res.w{color:var(--win)} .res.l{color:var(--loss)}
+th.team .rec{display:block;font-family:var(--body);font-weight:500;font-size:12px;color:var(--muted)}
+th.team .t{align-items:center}
+.stand{width:100%;min-width:560px}
+.stand td,.stand th{text-align:left;padding:8px 10px}
+.stand td.num,.stand th.num{text-align:center}
+.stand .t{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:600;font-size:18px}
+.stand .helm{width:38px;height:29px}
+.stand thead th{font-family:var(--body);font-size:13px;font-weight:600}
+.stand .next{font-size:14px;color:var(--muted)}
+.stand .pos{color:var(--muted);font-family:var(--display);font-weight:600;width:34px}
+.sc,.pre,.fin,.note.mob{display:none}
+@media (max-width:640px){
+  .seg button{padding:7px 12px}
+  .game .row{grid-template-columns:1fr;gap:6px}
+  .game .row>.mid,.game .row>.score{display:none}
+  .game .side,.game .side.home{justify-content:flex-start;text-align:left}
+  .game .side .helm{order:0;width:44px;height:33px}
+  .game .side.home .helm{transform:scaleX(-1)}
+  .game .side .nmb{order:1;flex:1;flex-direction:row;flex-wrap:wrap;align-items:baseline;column-gap:6px}
+  .game .sc{display:block;order:2;margin-left:auto;font-family:var(--display);font-weight:800;font-size:26px;line-height:1}
+  .game .lost .sc{color:var(--muted)}
+  .game .pre{display:inline;color:var(--muted);font-size:.8em;margin-right:4px}
+  .game .note{text-align:left;margin-left:52px}
+  .game .fin{display:inline}
+  .game .note.mob{display:block}
+}
+footer{color:var(--muted);font-size:13px;margin:26px auto 40px}
+footer p{margin:4px 0;max-width:70ch}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="helmet" viewBox="0 0 64 48">
+      <path d="M6 28 C6 13 18 4 33 4 C47 4 56 12 56 23 L50 25 L44 25 L42 32 L36 38 L17 40 C10 39.5 6 34.5 6 28 Z" fill="var(--shell)"/>
+      <path d="M12 16 C16 9 23 6.5 31 6.5" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="27" cy="27" r="3.2" fill="#000" fill-opacity=".35"/>
+      <path d="M44 25 L59 25 M42.5 31.5 L59 31.5 M58.5 22 L59.5 36 L40 39 M50 25 L50 38" fill="none" stroke="var(--mask)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="turf">
+  <div class="wrap">
+    <h1>SEC Football<small>2026 helmet schedule</small></h1>
+    <p class="lede">Sixteen teams, nine conference games each, one title game in Atlanta. Pick a week.</p>
+  </div>
+  <nav class="weeks" id="weeks" aria-label="Choose a week"></nav>
+</header>
+
+<main class="wrap">
+  <div class="bar">
+    <div class="seg" role="tablist" aria-label="View">
+      <button role="tab" id="tab-week" aria-selected="true">By week</button>
+      <button role="tab" id="tab-grid" aria-selected="false">Team grid</button>
+      <button role="tab" id="tab-stand" aria-selected="false">Standings</button>
+    </div>
+    <div class="legend"><svg style="--shell:var(--nonsec);--mask:var(--nonsec-mask)"><use href="#helmet"/></svg>Gray helmets are nonconference opponents</div>
+  </div>
+
+  <section id="view-week"></section>
+  <section id="view-grid" hidden>
+    <div class="gridwrap"><table id="grid"></table></div>
+  </section>
+  <section id="view-stand" hidden>
+    <div class="gridwrap"><table class="stand" id="stand"></table></div>
+  </section>
+
+  <footer>
+    <p>Schedule as released by the SEC. Games are on Saturday unless another day is noted. Kickoff times are Eastern and shown once they're set; dates can change.</p>
+    <p>Scores and records through Week 3. Rankings are from the AP Top 25 released September 20. Small numbers before a team name are AP ranks.</p>
+    <p>Helmets are generic icons in school colors, not official team marks. Updated September 20, 2026.</p>
+  </footer>
+</main>
+
+<script>
+// ===== DATA (update weekly) =====
+// Update log: scores through Week 3; AP poll of Sep 20, 2026.
+const UPDATED = "September 20, 2026";
+
+// AP Top 25 rank by team key (SEC teams and ranked opponents)
+const RANK = { tex:1, uga:2, miss:4, ala:8, lsu:10, tenn:14, utah:15, lou:16, miz:19, mich:18,
+               osu:7, fla:21, tamu:23, msst:24 };
+
+const SEC = {
+  ala:["Alabama","ALA","#9E1B32","#C9CDD2"], ark:["Arkansas","ARK","#9D2235","#FFFFFF"],
+  aub:["Auburn","AUB","#0C2340","#E87722"], fla:["Florida","FLA","#0021A5","#FA4616"],
+  uga:["Georgia","UGA","#BA0C2F","#1A1A1A"], uk:["Kentucky","UK","#0033A0","#FFFFFF"],
+  lsu:["LSU","LSU","#461D7C","#FDD023"], miss:["Ole Miss","MISS","#CE1126","#14213D"],
+  msst:["Mississippi St.","MSST","#660000","#FFFFFF"], miz:["Missouri","MIZ","#F1B82D","#1A1A1A"],
+  ou:["Oklahoma","OU","#841617","#FDF9D8"], sc:["South Carolina","SC","#73000A","#1A1A1A"],
+  tenn:["Tennessee","TENN","#FF8200","#FFFFFF"], tex:["Texas","TEX","#BF5700","#FFFFFF"],
+  tamu:["Texas A&M","TAMU","#500000","#FFFFFF"], van:["Vanderbilt","VAN","#1A1A1A","#CFAE70"]
+};
+const OTHER = {
+  ecu:["East Carolina","ECU"], una:["North Alabama","UNA"], bay:["Baylor","BAY"], fau:["Florida Atlantic","FAU"],
+  tnst:["Tennessee State","TNST"], ysu:["Youngstown State","YSU"], clem:["Clemson","CLEM"], lou:["Louisville","LOU"],
+  ulm:["Louisiana-Monroe","ULM"], uapb:["Arkansas-Pine Bluff","UAPB"], utep:["UTEP","UTEP"], kent:["Kent State","KENT"],
+  fur:["Furman","FUR"], txst:["Texas State","TXST"], most:["Missouri State","MOST"], apsu:["Austin Peay","APSU"],
+  utah:["Utah","UTAH"], usm:["Southern Miss","USM"], camp:["Campbell","CAM"], wku:["Western Kentucky","WKU"],
+  latech:["Louisiana Tech","LT"], char:["Charlotte","CLT"], minn:["Minnesota","MINN"], ku:["Kansas","KU"],
+  mich:["Michigan","MICH"], tow:["Towson","TOW"], gt:["Georgia Tech","GT"], osu:["Ohio State","OSU"],
+  asu:["Arizona State","ASU"], del:["Delaware","DEL"], fsu:["Florida State","FSU"], troy:["Troy","TROY"],
+  unm:["New Mexico","UNM"], kenn:["Kennesaw State","KSU"], utsa:["UTSA","UTSA"], ncst:["NC State","NCST"],
+  tlsa:["Tulsa","TLSA"], usa:["South Alabama","USA"], mcn:["McNeese","MCN"], cit:["The Citadel","CIT"],
+  utc:["Chattanooga","UTC"], sam:["Samford","SAM"], wof:["Wofford","WOF"], tntc:["Tennessee Tech","TNTC"]
+};
+
+// [away, home, {n: neutral site, d: day if not Saturday, t: kickoff ET, s: [awayScore, homeScore]}]
+const WEEKS = [
+ {date:"2026-09-05", label:"Saturday, September 5", games:[
+  ["ecu","ala",{s:[10,48]}],["una","ark",{s:[14,31]}],["bay","aub",{n:"Atlanta",s:[16,17]}],["fau","fla",{s:[21,66]}],
+  ["tnst","uga",{s:[3,63]}],["ysu","uk",{s:[13,45]}],["clem","lsu",{s:[10,51]}],
+  ["lou","miss",{n:"Nashville",d:"Sunday, Sep 6",s:[38,41]}],["ulm","msst",{s:[13,62]}],["uapb","miz",{d:"Thursday, Sep 3",s:[14,54]}],
+  ["utep","ou",{d:"Friday, Sep 4",s:[0,51]}],["kent","sc",{s:[0,57]}],["fur","tenn",{s:[9,56]}],["txst","tex",{s:[7,59]}],
+  ["most","tamu",{s:[0,50]}],["apsu","van",{s:[9,28]}]]},
+ {date:"2026-09-12", label:"Saturday, September 12", games:[
+  ["ark","utah",{s:[10,43]}],["usm","aub",{s:[8,43]}],["camp","fla",{s:[3,52]}],["wku","uga",{s:[20,70]}],["ala","uk",{s:[45,17]}],
+  ["latech","lsu",{s:[14,45]}],["char","miss",{s:[9,41]}],["msst","minn",{s:[38,13]}],["miz","ku",{d:"Friday, Sep 11",s:[38,21]}],
+  ["ou","mich",{s:[10,17]}],["tow","sc",{s:[9,45]}],["tenn","gt",{s:[45,24]}],["osu","tex",{s:[23,24]}],["asu","tamu",{s:[20,48]}],
+  ["del","van",{s:[26,35]}]]},
+ {date:"2026-09-19", label:"Saturday, September 19", games:[
+  ["fsu","ala",{t:"3:30 PM",s:[36,50]}],["uga","ark",{t:"Noon",s:[45,17]}],["fla","aub",{t:"7:00 PM",s:[44,39]}],["lsu","miss",{t:"7:30 PM",s:[24,32]}],["troy","miz",{t:"7:00 PM",s:[17,27]}],
+  ["unm","ou",{t:"7:30 PM",s:[6,14]}],["msst","sc",{t:"4:15 PM",s:[41,34]}],["kenn","tenn",{t:"7:45 PM",s:[9,42]}],["utsa","tex",{t:"8:00 PM",s:[6,30]}],
+  ["uk","tamu",{t:"3:30 PM",s:[31,21]}],["ncst","van",{t:"12:45 PM",s:[31,35]}]]},
+ {date:"2026-09-26", label:"Saturday, September 26", games:[
+  ["sc","ala",{t:"7:00 PM"}],["tlsa","ark",{t:"8:00 PM"}],["van","aub",{t:"4:15 PM"}],["miss","fla",{t:"3:30 PM"}],["ou","uga",{t:"3:30 PM"}],
+  ["usa","uk",{t:"12:45 PM"}],["tamu","lsu",{t:"7:30 PM"}],["miz","msst",{t:"7:45 PM"}],["tex","tenn",{t:"Noon"}]]},
+ {date:"2026-10-03", label:"Saturday, October 3", games:[
+  ["van","uga"],["mcn","lsu",{t:"7:45 PM"}],["ala","msst"],["fla","miz"],["uk","sc"],["aub","tenn"],["ark","tamu"]]},
+ {date:"2026-10-10", label:"Saturday, October 10", games:[
+  ["uga","ala"],["tenn","ark"],["sc","fla"],["lsu","uk"],["tamu","miz"],["tex","ou",{n:"Dallas",t:"3:30 PM"}],["miss","van"]]},
+ {date:"2026-10-17", label:"Saturday, October 17", games:[
+  ["aub","uga"],["msst","lsu"],["miz","miss"],["uk","ou"],["ala","tenn"],["fla","tex"],["cit","tamu",{t:"1:00 PM"}],["ark","van"]]},
+ {date:"2026-10-24", label:"Saturday, October 24", games:[
+  ["tamu","ala"],["lsu","aub",{t:"Noon"}],["van","uk"],["ou","msst"],["tenn","sc"],["miss","tex"]]},
+ {date:"2026-10-31", label:"Saturday, October 31", games:[
+  ["miz","ark"],["fla","uga",{n:"Atlanta",t:"3:30 PM"}],["aub","miss"],["sc","ou"],["msst","tex"]]},
+ {date:"2026-11-07", label:"Saturday, November 7", games:[
+  ["ark","aub"],["ou","fla"],["ala","lsu"],["uga","miss"],["van","msst"],["tex","miz"],["tamu","sc"],["uk","tenn"]]},
+ {date:"2026-11-14", label:"Saturday, November 14", games:[
+  ["sc","ark"],["miz","uga"],["fla","uk"],["tex","lsu"],["aub","msst"],["miss","ou"],["tenn","tamu"],["ala","van"]]},
+ {date:"2026-11-21", label:"Saturday, November 21", games:[
+  ["utc","ala"],["sam","aub",{t:"3:30 PM"}],["van","fla"],["wof","miss",{t:"Noon"}],["tntc","msst",{t:"1:00 PM"}],["uk","miz"],
+  ["tamu","ou"],["uga","sc"],["lsu","tenn"],["ark","tex"]]},
+ {date:"2026-11-28", label:"Saturday, November 28", games:[
+  ["tex","tamu",{d:"Friday, Nov 27",t:"7:30 PM"}],["aub","ala"],["lsu","ark"],["fla","fsu",{d:"Friday, Nov 27",t:"3:30 PM"}],["gt","uga"],
+  ["lou","uk"],["msst","miss",{d:"Friday, Nov 27",t:"Noon"}],["ou","miz"],["sc","clem"],["tenn","van"]]}
+];
+
+// ===== HELPERS =====
+const isSec = k => k in SEC;
+const nameOf = k => (SEC[k]||OTHER[k]||["TBD","TBD"])[0];
+const abOf = k => (SEC[k]||OTHER[k]||["TBD","TBD"])[1];
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const rk = k => RANK[k] ? `<span class="rk">${RANK[k]}</span>` : "";
+function helm(k, flip){
+  const s = isSec(k) ? `--shell:${SEC[k][2]};--mask:${SEC[k][3]}` : `--shell:var(--nonsec);--mask:var(--nonsec-mask)`;
+  const t = flip ? ` transform="translate(64 0) scale(-1 1)"` : "";
+  return `<svg class="helm" viewBox="0 0 64 48" style="${s}" aria-hidden="true"><g${t}><use href="#helmet"/></g></svg>`;
+}
+
+// records computed from scores
+const REC = {};
+for (const k in SEC) REC[k] = {w:0,l:0,cw:0,cl:0};
+for (const w of WEEKS) for (const [a,h,o={}] of w.games){
+  if (!o.s) continue;
+  const conf = isSec(a) && isSec(h);
+  const aw = o.s[0] > o.s[1];
+  for (const [k,won] of [[a,aw],[h,!aw]]) if (isSec(k)){
+    REC[k][won?'w':'l']++;
+    if (conf) REC[k][won?'cw':'cl']++;
+  }
+}
+const recStr = k => `${REC[k].w}-${REC[k].l}`;
+const confStr = k => `${REC[k].cw}-${REC[k].cl}`;
+
+// current week: first week that still has an unplayed game
+let current = WEEKS.findIndex(w => w.games.some(g => !(g[2]&&g[2].s)));
+if (current === -1) current = 13;
+let selected = current;
+let view = "week";
+
+// ===== RENDER =====
+function renderWeeks(){
+  const nav = document.getElementById("weeks");
+  let h = "";
+  WEEKS.forEach((w,i)=>{
+    h += `<button class="wk" data-i="${i}" aria-pressed="${i===selected}" aria-label="Week ${i+1}${i===current?', this week':''}">${i+1}${i===current?'<span class="now">this week</span>':''}</button>`;
+  });
+  h += `<button class="wk cg" data-i="13" aria-pressed="${selected===13}" aria-label="SEC Championship Game">Title${current===13?'<span class="now">this week</span>':''}</button>`;
+  nav.innerHTML = h;
+  nav.querySelectorAll(".wk").forEach(b=>b.onclick=()=>{selected=+b.dataset.i;setView("week");});
+  const sel = nav.querySelector('[aria-pressed="true"]');
+  if (sel) sel.scrollIntoView({block:"nearest",inline:"center"});
+}
+
+function side(k, isHome, lost, score, pre){
+  const nm = `<span class="nmb"><span class="nm">${pre?`<span class="pre">${pre}</span>`:''}${rk(k)}${esc(nameOf(k))}</span>${isSec(k)?`<span class="rec">${recStr(k)}</span>`:''}</span>`;
+  const sc = score!=null ? `<span class="sc">${score}</span>` : '';
+  return `<div class="side ${isHome?'home':''} ${lost?'lost':''}">${isHome? nm+helm(k,true) : helm(k,false)+nm}${sc}</div>`;
+}
+
+function renderWeek(){
+  const el = document.getElementById("view-week");
+  if (selected === 13){
+    el.innerHTML = `<div class="wkhead"><h2>SEC Championship</h2><p>Saturday, December 5</p></div>
+    <div class="cg-card">
+      <div class="row"><div class="side">${helm("tbd",false)}<span class="nm">No. 1 seed</span></div><div class="mid">vs</div><div class="side home"><span class="nm">No. 2 seed</span>${helm("tbd",true)}</div></div>
+      <p><strong>Mercedes-Benz Stadium, Atlanta</strong></p>
+      <p>4:00 p.m. ET on ABC</p>
+      <p>No divisions: the top two teams by conference winning percentage meet.</p>
+    </div>`;
+    return;
+  }
+  const w = WEEKS[selected];
+  const games = [...w.games].sort((a,b)=>(isSec(b[0])&&isSec(b[1])) - (isSec(a[0])&&isSec(a[1])));
+  const playing = new Set(w.games.flatMap(g=>[g[0],g[1]]));
+  const off = Object.keys(SEC).filter(k=>!playing.has(k)).map(nameOf);
+  const confCount = w.games.filter(g=>isSec(g[0])&&isSec(g[1])).length;
+  let h = `<div class="wkhead"><h2>Week ${selected+1}</h2><p>${w.label} ${confCount?`(${confCount} conference game${confCount>1?'s':''})`:''}</p></div><ul class="games">`;
+  for (const [a,hm,o={}] of games){
+    let mid, notes = [];
+    if (o.s){
+      const [as,hs] = o.s, aw = as>hs;
+      mid = `<div class="score"><span class="${aw?'':'lo'}">${as}</span>–<span class="${aw?'lo':''}">${hs}</span><small>Final</small></div>`;
+      if (o.d) notes.push(o.d);
+      if (o.n) notes.push(`in ${o.n}`);
+      const fin = `<span class="fin">Final${notes.length?', ':''}</span>`;
+      h += `<li class="game"><div class="row">${side(a,false,!aw,as)}${mid}${side(hm,true,aw,hs,o.n?'vs':'at')}</div><p class="note ${notes.length?'':'mob'}">${fin}${notes.join(", ")}</p></li>`;
+    } else {
+      mid = `<div class="mid">${o.n?'vs':'at'}</div>`;
+      if (o.d) notes.push(o.d);
+      notes.push(o.t ? `${o.t} ET` : "Time TBA");
+      if (o.n) notes.push(`in ${o.n}`);
+      h += `<li class="game"><div class="row">${side(a,false,false)}${mid}${side(hm,true,false,null,o.n?'vs':'at')}</div><p class="note">${notes.join(", ")}</p></li>`;
+    }
+  }
+  h += `</ul>`;
+  if (off.length) h += `<p class="off"><b>Off this week:</b> ${off.map(esc).join(", ")}</p>`;
+  el.innerHTML = h;
+}
+
+function renderGrid(){
+  const t = document.getElementById("grid");
+  let h = `<thead><tr><th class="team" scope="col">Team</th>`;
+  WEEKS.forEach((w,i)=>{
+    const d = new Date(w.date+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"});
+    h += `<th scope="col" class="${i===current?'cur':''}"><button data-i="${i}" title="Open week ${i+1}">Wk ${i+1}<br>${d}</button></th>`;
+  });
+  h += `</tr></thead><tbody>`;
+  for (const k of Object.keys(SEC).sort((a,b)=>nameOf(a).localeCompare(nameOf(b)))){
+    h += `<tr><th class="team" scope="row"><span class="t">${helm(k,false)}<span>${rk(k)}${esc(nameOf(k))}<span class="rec">${recStr(k)} (${confStr(k)} SEC)</span></span></span></th>`;
+    WEEKS.forEach((w,i)=>{
+      const g = w.games.find(g=>g[0]===k||g[1]===k);
+      const cur = i===current?'cur':'';
+      if (!g){ h += `<td class="bye ${cur}">Off</td>`; return; }
+      const [a,hm,o={}] = g;
+      const opp = a===k ? hm : a;
+      const pre = o.n ? "vs " : (a===k ? "@" : "");
+      let res = "";
+      if (o.s){
+        const mine = a===k ? o.s[0] : o.s[1], theirs = a===k ? o.s[1] : o.s[0];
+        const won = mine > theirs;
+        res = `<span class="res ${won?'w':'l'}">${won?'W':'L'} ${mine}-${theirs}</span>`;
+      }
+      h += `<td class="${cur}" title="${esc(nameOf(k))} ${o.n?'vs':(a===k?'at':'vs')} ${esc(nameOf(opp))}${o.n?' in '+o.n:''}">${helm(opp,false)}<span class="ab"><i>${pre}</i>${esc(abOf(opp))}</span>${res}</td>`;
+    });
+    h += `</tr>`;
+  }
+  h += `</tbody>`;
+  t.innerHTML = h;
+  t.querySelectorAll("thead button").forEach(b=>b.onclick=()=>{selected=+b.dataset.i;setView("week");});
+}
+
+function nextGame(k){
+  for (const w of WEEKS){
+    const g = w.games.find(g=>(g[0]===k||g[1]===k) && !(g[2]&&g[2].s));
+    if (g){
+      const [a,hm,o={}] = g; const opp = a===k?hm:a;
+      const d = new Date(w.date+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"});
+      return `${o.n?'vs':(a===k?'at':'vs')} ${rk(opp)}${esc(nameOf(opp))}, ${o.d?o.d.replace(/^\w+, /,''):d}`;
+    }
+  }
+  return "Season complete";
+}
+function renderStand(){
+  const pct = (w,l) => (w+l) ? w/(w+l) : .5;
+  const teams = Object.keys(SEC).sort((x,y)=>{
+    const a=REC[x], b=REC[y];
+    return pct(b.cw,b.cl)-pct(a.cw,a.cl) || b.cw-a.cw || a.cl-b.cl || pct(b.w,b.l)-pct(a.w,a.l) || nameOf(x).localeCompare(nameOf(y));
+  });
+  let h = `<thead><tr><th class="pos" scope="col"></th><th scope="col">Team</th><th class="num" scope="col">SEC</th><th class="num" scope="col">Overall</th><th scope="col">Next game</th></tr></thead><tbody>`;
+  teams.forEach((k,i)=>{
+    h += `<tr><td class="pos">${i+1}</td><th scope="row"><span class="t">${helm(k,false)}<span>${rk(k)}${esc(nameOf(k))}</span></span></th><td class="num">${confStr(k)}</td><td class="num">${recStr(k)}</td><td class="next">${nextGame(k)}</td></tr>`;
+  });
+  h += `</tbody>`;
+  document.getElementById("stand").innerHTML = h;
+}
+
+function setView(v){
+  view = v;
+  for (const n of ["week","grid","stand"]){
+    document.getElementById("tab-"+n).setAttribute("aria-selected", v===n);
+    document.getElementById("view-"+n).hidden = v!==n;
+  }
+  renderWeeks();
+  if (v==="week") renderWeek();
+}
+for (const n of ["week","grid","stand"]) document.getElementById("tab-"+n).onclick=()=>setView(n);
+renderGrid();
+renderStand();
+setView("week");
+</script>
+</body>
+</html>
