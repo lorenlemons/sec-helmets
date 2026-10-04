@@ -185,19 +185,19 @@ footer p{margin:4px 0;max-width:70ch}
 
   <footer>
     <p>Schedule as released by the SEC. Games are on Saturday unless another day is noted. Kickoff times are Eastern and shown once they're set; dates can change.</p>
-    <p>Scores and records through Week 4. Rankings are from the AP Top 25 released September 27. Small numbers before a team name are AP ranks.</p>
-    <p>Helmets are generic icons in school colors, not official team marks. Updated September 27, 2026.</p>
+    <p>Scores and records through Week 5. Rankings are from the AP Top 25 released October 4. Small numbers before a team name are AP ranks.</p>
+    <p>Helmets are generic icons in school colors, not official team marks. Updated October 4, 2026.</p>
   </footer>
 </main>
 
 <script>
 // ===== DATA (update weekly) =====
-// Update log: scores through Week 4; AP poll of Sep 27, 2026.
-const UPDATED = "September 27, 2026";
+// Update log: scores through Week 5; AP poll of Oct 4, 2026.
+const UPDATED = "October 4, 2026";
 
 // AP Top 25 rank by team key (SEC teams and ranked opponents)
-const RANK = { tex:1, uga:2, osu:5, ala:7, fla:8, miss:9, lsu:11, utah:13, msst:16, tenn:17,
-               uk:24, miz:25 };
+const RANK = { tex:1, uga:2, osu:5, ala:6, miss:9, lsu:10, utah:12, miz:14, tenn:15, fla:16,
+               msst:17 };
 
 const SEC = {
   ala:["Alabama","ALA","#9E1B32","#C9CDD2"], ark:["Arkansas","ARK","#9D2235","#FFFFFF"],
@@ -244,9 +244,9 @@ const WEEKS = [
   ["sc","ala",{t:"7:00 PM",s:[18,49]}],["tlsa","ark",{t:"8:00 PM",s:[6,34]}],["van","aub",{t:"4:15 PM",s:[15,21]}],["miss","fla",{t:"3:30 PM",s:[28,52]}],["ou","uga",{t:"3:30 PM",s:[13,41]}],
   ["usa","uk",{t:"12:45 PM",s:[21,45]}],["tamu","lsu",{t:"7:30 PM",s:[6,35]}],["miz","msst",{t:"7:45 PM",s:[24,31]}],["tex","tenn",{t:"Noon",s:[20,17]}]]},
  {date:"2026-10-03", label:"Saturday, October 3", games:[
-  ["van","uga",{t:"12:45 PM"}],["mcn","lsu",{t:"7:45 PM"}],["ala","msst",{t:"Noon"}],["fla","miz",{t:"3:30 PM"}],["uk","sc",{t:"4:15 PM"}],["aub","tenn",{t:"3:30 PM"}],["ark","tamu",{t:"7:00 PM"}]]},
+  ["van","uga",{t:"12:45 PM",s:[14,38]}],["mcn","lsu",{t:"7:45 PM",s:[14,63]}],["ala","msst",{t:"Noon",s:[56,23]}],["fla","miz",{t:"3:30 PM",s:[17,45]}],["uk","sc",{t:"4:15 PM",s:[35,34]}],["aub","tenn",{t:"3:30 PM",s:[14,24]}],["ark","tamu",{t:"7:00 PM",s:[7,34]}]]},
  {date:"2026-10-10", label:"Saturday, October 10", games:[
-  ["uga","ala"],["tenn","ark"],["sc","fla"],["lsu","uk"],["tamu","miz"],["tex","ou",{n:"Dallas",t:"3:30 PM"}],["miss","van"]]},
+  ["uga","ala",{t:"7:30 PM"}],["tenn","ark",{t:"4:15 PM"}],["sc","fla",{t:"12:45 PM"}],["lsu","uk",{t:"7:00 PM"}],["tamu","miz"],["tex","ou",{n:"Dallas",t:"3:30 PM"}],["miss","van",{t:"3:30 PM"}]]},
  {date:"2026-10-17", label:"Saturday, October 17", games:[
   ["aub","uga"],["msst","lsu"],["miz","miss"],["uk","ou"],["ala","tenn"],["fla","tex"],["cit","tamu",{t:"1:00 PM"}],["ark","van"]]},
  {date:"2026-10-24", label:"Saturday, October 24", games:[
